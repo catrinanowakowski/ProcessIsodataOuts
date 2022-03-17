@@ -15,7 +15,7 @@ process_CSIA_full_run <- function(){
 
   ##############################################################################
   ##############################################################################
-  source(paste0(file_sorc, "/read_tag_correct.R"))     
+  # source(paste0(file_sorc, "/read_tag_correct.R"))     
   outs <- read_tag_correct(C_N = C_N, file_sorc = file_sorc, file_data = file_data, AAStd_name = AAStd_name)
   
   Std_df = outs$Std_df # Summary table of the AA std runs and the data used in correction factors
@@ -31,7 +31,7 @@ process_CSIA_full_run <- function(){
   
   ##########################################################
   ## Add flags 
-  source(paste0(file_sorc, "/add_flags_and_order.R"))     
+  # source(paste0(file_sorc, "/add_flags_and_order.R"))     
   outs <- add_flags_and_order(fn_df = fn_df, Std_df = Std_df, df_peaks = df_peaks, df_AAstd = df_AAstd)
   
   fn_df <- outs$fn_df
@@ -160,25 +160,25 @@ process_CSIA_full_run <- function(){
   grid.arrange(std_plt, smp_plt)
   
   if(C_N == "C"){
-    source(paste(file_sorc,"Lab_Std_plots_C.R", sep = "/"))
-    lab_aa_plt <- Plt_Lab_AAStds()+
+    # source(paste(file_sorc,"Lab_Std_plots_C.R", sep = "/"))
+    lab_aa_plt <- Plt_Lab_AAStds_C()+
       geom_point(data = all_fn_std_df, aes(x = AAs,
                                            y = Mean), size = 5, color = "black") +
       ggtitle(fl_nm) 
     
-    lab_std_plt <- Plt_Lab_Stds() +
+    lab_std_plt <- Plt_Lab_Stds_C() +
       geom_point(data = fn_df[fn_df$smp == cyano,], aes(x = AAs,
                                                         y = Corrected_delta_13_c), size = 5, color = "black") + 
       geom_point(data = fn_df[fn_df$smp == fish_muscle,], aes(x = AAs,
                                                               y = Corrected_delta_13_c), size = 5, color = "darkgray")
   }else if(C_N == "N"){
-    source(paste(file_sorc,"Lab_Std_plots_N.R", sep = "/"))
-    lab_aa_plt <- Plt_Lab_AAStds()+
+    # source(paste(file_sorc,"Lab_Std_plots_N.R", sep = "/"))
+    lab_aa_plt <- Plt_Lab_AAStds_N()+
       geom_point(data = all_fn_std_df, aes(x = AAs,
                                            y = Mean), size = 5, color = "black") +
       ggtitle(fl_nm) 
     
-    lab_std_plt <- Plt_Lab_Stds() +
+    lab_std_plt <- Plt_Lab_Stds_N() +
       geom_point(data = fn_df[fn_df$smp == cyano,], aes(x = AAs,
                                                         y = Corrected_delta_15_N), size = 5, color = "black") + 
       geom_point(data = fn_df[fn_df$smp == fish_muscle,], aes(x = AAs,
