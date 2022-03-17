@@ -161,24 +161,24 @@ process_CSIA_full_run <- function(){
   
   if(C_N == "C"){
     # source(paste(file_sorc,"Lab_Std_plots_C.R", sep = "/"))
-    lab_aa_plt <- Plt_Lab_AAStds_C()+
+    lab_aa_plt <- Plt_Lab_AAStds_C(file_save_AAstds_C = file_save_AAstds_C)+
       geom_point(data = all_fn_std_df, aes(x = AAs,
                                            y = Mean), size = 5, color = "black") +
       ggtitle(fl_nm) 
     
-    lab_std_plt <- Plt_Lab_Stds_C() +
+    lab_std_plt <- Plt_Lab_Stds_C(file_save_stds_C = file_save_stds_C) +
       geom_point(data = fn_df[fn_df$smp == cyano,], aes(x = AAs,
                                                         y = Corrected_delta_13_c), size = 5, color = "black") + 
       geom_point(data = fn_df[fn_df$smp == fish_muscle,], aes(x = AAs,
                                                               y = Corrected_delta_13_c), size = 5, color = "darkgray")
   }else if(C_N == "N"){
     # source(paste(file_sorc,"Lab_Std_plots_N.R", sep = "/"))
-    lab_aa_plt <- Plt_Lab_AAStds_N()+
+    lab_aa_plt <- Plt_Lab_AAStds_N(file_save_AAstds_N = file_save_AAstds_N)+
       geom_point(data = all_fn_std_df, aes(x = AAs,
                                            y = Mean), size = 5, color = "black") +
       ggtitle(fl_nm) 
     
-    lab_std_plt <- Plt_Lab_Stds_N() +
+    lab_std_plt <- Plt_Lab_Stds_N(file_save_stds_N = file_save_stds_N) +
       geom_point(data = fn_df[fn_df$smp == cyano,], aes(x = AAs,
                                                         y = Corrected_delta_15_N), size = 5, color = "black") + 
       geom_point(data = fn_df[fn_df$smp == fish_muscle,], aes(x = AAs,

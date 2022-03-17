@@ -7,6 +7,60 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+
+## Started: 07-07-2021: Nowakowski
+## Updated: 08-09-2021: Nowakowski
+## Updated: 03-16-2022: Nowakowski
+
+## DO NOT CHANGE THE EXAMPLE_HOME.R FILE!! 
+## PLEASE SAVE A NEW ONE WITH YOUR NAME OR PROJECT IN THE FILE NAME AND EDIT YOUR RUN SETTINGS FROM THERE
+
+## SAVE THIS TO THE HOME FILE - THIS IS WHERE ALL FILES THAT MAY BE CHANGED LIVE. 
+
+## NEVER EDIT A FILE IN THE SOURCE FOLDER WITH OUT SAVING A COPY SEPERATLY FIRST
+
+## variables defined in this file are global and can be used by all functions
+
+
+#################################################
+## Current errors that run and code could be adjusted for
+## Note: Current case that does not work is if one sample has meth and the other two do not AND the standard also has Meth
+## still might need to add in an error for when isoreader goofs occasionally with the vendor data table when peak st and stop time are adjusted 
+
+##################################################
+## REASONS WHY YOU MAY RUN AN ERROR
+# Is your AAstd name consistent with your file names?
+# Are your labstd names consistent with your file names?
+# Did you format the file name correctly? No extra "_", includes sample id, C or N, run with replicate number YYMMDD_HHMMSS_AA4_C_R1_xxxxxxxx OR YYMMDD_HHMMSS_Cal2003_C_R1_xxxxxxxx 
+# Did you adjust the AAs in the standard run vector according to what your standards ran?
+# Did you delete all of your junk peaks?
+# Do you have any peaks in your sample that are not included in your AA standard runs? -- delete those 
+
+##############################################################################
+## ASUMPTIONS 
+# This is applied after you do your peak corrections in isodat
+# No need to remove extra columnsin the vendor table
+
+# dxf file name example format:
+## Standards:
+# YYMMDD_HHMMSS_AA4_C_R1_xxxxxxxx
+# YYMMDD_HHMMSS_AA4_C_R2_xxxxxxxx
+
+## Samples:
+# YYMMDD_HHMMSS_Cal2003_C_R1_xxxxxxxx
+# YYMMDD_HHMMSS_Cal2003_C_R2_xxxxxxxx
+# YYMMDD_HHMMSS_Cal2003_C_R3_xxxxxxxx
+# YYMMDD_HHMMSS_Cal2005_C_R1_xxxxxxxx
+# YYMMDD_HHMMSS_Cal2005_C_R2_xxxxxxxx
+# YYMMDD_HHMMSS_Cal2005_C_R3_xxxxxxxx
+
+# assumes the first five and last 3 peaks are always the one off runs and that there are no extra or "Junk" peaks
+
+
+
+
+
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -17,4 +71,97 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(ProcessIsodataOuts)
 ```
+
+```{r, echo=FALSE}
+
+###########################################################
+# # # # #####
+# ## EXAMPLE
+#### rm(list = ls(all.names = TRUE)) ## USE THIS TO CELAR ENVIRONMENT IF NESSARY 
+# ## Where are your dxf files saved?
+# file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/2021 Copepods/N_AA6_cyn6_Fish1_ty0710_cal979905")
+# ## AA std id name for that run
+# AAStd_name <-  "AA6"
+# ## AA that were measured in your standard during the run  ## AA_list <- c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
+# # Note - if you did not measure a value in your standard, you need to deleate that peak from your isodate files also for each sample 
+# AA_list <- c(  "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
+# ## Nitrogen or carbon
+# C_N <- "N"
+# ## Name of the folder your files are in (or some way to identfy this spicific run when saving the std data in other folders)
+# fl_nm <- "N_AA6_cyn6_Fish1_ty0710_cal979905"
+# 
+# ## the oder AA are plotted in (type is like source, trophic, essentia/non. Run is the order that the machine measures them in  )
+# order_AAs <- "Type" # "Type" "Run"
+# 
+# ## the sample name of your lab standard (McMahon lab has been using cyano and a fish so that is why the name is cyano and not labstd for now)
+# cyano <- "Cyn6"
+# fish_muscle <- "Fish1"
+# 
+
+# 
+file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/2021 Copepods/N_AA7_cyn7_Fish2_ty969708_cal9608_TESTBUG")
+AAStd_name <-  "AA7"
+# AA_list <- c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
+AA_list <- c( "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
+C_N <- "N"
+fl_nm <- "N_AA7_cyn7_Fish2_ty969708_cal9608_TESTBUG"
+order_AAs <- "Type" # "type
+cyano <- "cyn7"
+fish_muscle <- "fish2"
+
+
+# ## C_AA8_cyn8_f3_ty040616_cal040616
+# file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/2021 Copepods/C_AA8_cyn8_f3_ty040616_cal040616")
+# AAStd_name <- "AA8"
+# AA_list <- c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
+# C_N <- "C"
+# fl_nm <- "C_AA8_cyn8_f3_ty040616_cal040616"
+# order_AAs <- "Type" # "Type" "Run"
+# cyano <- "cyn7"
+# fish_muscle <- "fish2"
+
+
+
+# # ## A separate place where you want your final sample data to be stored:
+file_save <- "C:/Users/EcoGeoChemLab/Documents"
+# 
+# ## Where this file you are using now lives:
+file_home <- "C:/Users/EcoGeoChemLab/isodat_processing"
+
+## Carbon AA std files for your lab
+file_save_AAstds_C <- "C:/Users/EcoGeoChemLab/Documents/AAStds_C"
+## Carbon Labstd files for your lab
+file_save_stds_C <- "C:/Users/EcoGeoChemLab/Documents/Stds_C"
+
+
+## Nitrogen AA std files for your lab
+file_save_AAstds_N <- "C:/Users/EcoGeoChemLab/Documents/AAStds_N"
+## Nitrogen Labstd files for your lab
+file_save_stds_N <- "C:/Users/EcoGeoChemLab/Documents/Stds_N"
+
+##############################################################################
+##############################################################################
+## Code you shouldn't need to touch:
+
+# file_sorc <- paste0(file_home, "/sorc") ## Where your source files are stored (These you should never have to touch, and should be the same if you are running normal data corrections or std test runs)
+
+#######################
+# source(paste0(file_sorc, "/process_CSIA_full_run.r"))     
+outs <- process_CSIA_full_run()
+
+
+
+
+```
+
+
+```{r}
+
+all_fn_std_df <- outs$all_fn_std_df
+all_fn_df <- outs$all_fn_df
+rm(outs)
+```
+
+
+
 
