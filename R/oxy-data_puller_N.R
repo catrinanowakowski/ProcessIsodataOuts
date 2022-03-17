@@ -28,8 +28,8 @@ data_puller_N <- function(file_data){
              "file_name")
   
   # Read in all files, bind them togehter
-  setwd(file_data)
-  df_all <- iso_read_continuous_flow(file_names[1])
+  # setwd(file_data)
+  df_all <- iso_read_continuous_flow(paste0(file_data, "/", file_names[1]))
   df_all <- data.frame(df_all$vendor_data_table)
   df_all$file_name <- file_names[1]
   df_all <- df_all[,names(df_all) %in% keeps]
@@ -40,7 +40,7 @@ data_puller_N <- function(file_data){
   }
   for(i in 2:length(file_names)){
     print(i)
-    df <- iso_read_continuous_flow(file_names[i])
+    df <- iso_read_continuous_flow(paste0(file_data, "/", file_names[i]))
     df <- data.frame(df$vendor_data_table)
     df$file_name <- file_names[i]
     df <- df[,names(df) %in% keeps]

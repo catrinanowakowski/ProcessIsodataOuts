@@ -99,16 +99,15 @@ library(ProcessIsodataOuts)
 # 
 
 # 
-# file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/2021 Copepods/N_AA7_cyn7_Fish2_ty969708_cal9608_TESTBUG")
-file_data <- paste0(path.package(package = "ProcessIsodataOuts", quiet = FALSE),"/test_run")  
-AAStd_name <-  "AA8"
+file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/2021 Copepods/N_AA7_cyn7_Fish2_ty969708_cal9608_TESTBUG")
+AAStd_name <-  "AA7"
 # AA_list <- c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
 AA_list <- c( "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg")
 C_N <- "N"
-fl_nm <- "N_AA7_cyn7_Fish2_ty969708_cal9608_TESTBUG"
+fl_nm <- "test_run"
 order_AAs <- "Type" # "type
-cyano <- "Cyn8"
-fish_muscle <- "Fish3"
+cyano <- "cyn7"
+fish_muscle <- "fish2"
 
 
 # ## C_AA8_cyn8_f3_ty040616_cal040616
