@@ -2,11 +2,11 @@ Package: ProcessIsodataOuts
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Catherine (Catrina)",
+           family = "Nowakowski",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "cnowakowski@uri.edu",
+           comment = c(ORCID = "0000-0002-0372-9556"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
