@@ -1,10 +1,10 @@
-#' @title FUNCTION_TITLE
-#' @description FUNCTION_DESCRIPTION
-#' @param fn_df PARAM_DESCRIPTION
-#' @param Std_df PARAM_DESCRIPTION
-#' @param df_peaks PARAM_DESCRIPTION
-#' @param df_AAstd PARAM_DESCRIPTION
-#' @return OUTPUT_DESCRIPTION
+#' @title add_flags_and_order
+#' @description Adds flags to know what has a high std, and orders the files in more user based structure. 
+#' @param fn_df final version of samples
+#' @param Std_df final version of standards
+#' @param df_peaks raw peak data
+#' @param df_AAstd raw std data
+#' @return returns files with full information
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
