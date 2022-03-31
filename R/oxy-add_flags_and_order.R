@@ -90,7 +90,7 @@ add_flags_and_order <- function(fn_df, Std_df, df_peaks, df_AAstd){
   }
   names(Std_df)[names(Std_df)%in%c("mix_standard")] <- "AAs"
   
-  runs <- max(Std_df$n)
+  runs <- max(Std_df$n, na.rm = TRUE)
   
   all_fn_df_1 <- merge(Std_df, df_vals[df_vals$run == 1,], by = c("AAs"))
   all_fn_std_df <- all_fn_df_1

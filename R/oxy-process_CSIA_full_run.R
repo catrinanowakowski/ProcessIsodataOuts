@@ -74,6 +74,8 @@ process_CSIA_full_run <- function(){
     
     Std_df$AAs <- factor(Std_df$AAs, levels = order_AA$AA)
     fn_df$AAs <- factor(fn_df$AAs, levels = order_AA$AA)
+    all_fn_std_df$AAs <-  factor(all_fn_std_df$AAs, levels = order_AA$AA)
+    
   }else if (order_AAs == "Type"){
     if(C_N == "N"){
       order_AA <- data.frame(AA  = c("Ala", "Asp", "Glu", "Ile", "Leu", "Pro", "Val",  "Gly", "Lys", "Phe", "Ser", "Thr", "Tyr",    "Arg", "Met", "NLeu"), 
@@ -86,10 +88,11 @@ process_CSIA_full_run <- function(){
     }
     Std_df$AAs <- factor(Std_df$AAs, levels = order_AA$AA)
     fn_df$AAs <- factor(fn_df$AAs, levels = order_AA$AA)
+    all_fn_std_df$AAs <-  factor(all_fn_std_df$AAs, levels = order_AA$AA)
+    
   }
-  order_AA <- data.frame(AA  =  c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg"), 
-                         order = c(1:15) )
-  all_fn_std_df$AAs <-  factor(all_fn_std_df$AAs, levels = order_AA$AA)
+  # order_AA <- data.frame(AA  =  c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Met", "Glu", "Phe", "Lys", "Arg"), 
+  #                        order = c(1:15) )
   all_fn_std_df$run <- as.factor(all_fn_std_df$run)
   
   

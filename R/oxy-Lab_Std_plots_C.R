@@ -34,11 +34,15 @@ Plt_Lab_Stds_C <- function(file_save_stds_C){
       rm(df)
     }
   }
+  
+  order_AA <- data.frame(AA  = c("Thr", "Val", "Leu", "Ile", "Phe", "Lys",    "Ala", "Gly", "Ser", "Pro", "Asp", "Met", "Glu",  "Arg", "NLeu"  ), 
+                         type = c("E", "E",    "E",   "E",   "E",   "E",      "N",    "N",  "N",   "N",   "N",   "N",    "N",    "N" ,   "C"), 
+                         order = c(1,   2,      3,     4,     5,     6,        7,      8,    9,    10,    11,    12,    13,        14 , 15) ) 
 
   
-  order_AA <- data.frame(AA  = c("Ala", "Asp", "Glu", "Ile", "Leu", "Pro", "Val",  "Gly", "Lys", "Phe", "Ser", "Thr", "Tyr",    "Arg", "Met", "NLeu"), 
-                         type = c("T", "T",    "T",   "T",   "T",   "T",   "T",     "S",  "S",   "S",   "S",   "S",  "S",       "S",    "S" , "C"), 
-                         order = c(1,   2,      3,     4,     5,     6,     7,       8,    9,    10,    11,    12,    13,        14 ,   15,  16) ) 
+  # order_AA <- data.frame(AA  = c("Ala", "Asp", "Glu", "Ile", "Leu", "Pro", "Val",  "Gly", "Lys", "Phe", "Ser", "Thr", "Tyr",    "Arg", "Met", "NLeu"), 
+  #                        type = c("T", "T",    "T",   "T",   "T",   "T",   "T",     "S",  "S",   "S",   "S",   "S",  "S",       "S",    "S" , "C"), 
+  #                        order = c(1,   2,      3,     4,     5,     6,     7,       8,    9,    10,    11,    12,    13,        14 ,   15,  16) ) 
   df_LabStds$AAs <- factor(df_LabStds$AAs, levels = order_AA$AA)
   
   plt <- ggplot() +
