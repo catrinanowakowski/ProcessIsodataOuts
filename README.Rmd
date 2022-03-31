@@ -20,17 +20,12 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/catrinanowakowski/process_isodata_outs/workflows/R-CMD-check/badge.svg)](https://github.com/catrinanowakowski/process_isodata_outs/actions)
 <!-- badges: end -->
 
-The goal of ProcessIsodataOuts is to ...
+The goal of ProcessIsodataOuts is to read files from isodat, assign AA peak names, and then correct sample data based on standard runs. 
+This package is still under development. 
 
 ## Installation
 
-You can install the released version of ProcessIsodataOuts from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("ProcessIsodataOuts")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -42,21 +37,44 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(ProcessIsodataOuts)
-## basic example code
+
+
+file_data <- c("C:/Thermo/Isodat NT/Global/User/Conflo IV Interface/Conflo IV Interface/Results/sherwood_220225_intercal_d13C/data")
+AAStd_name <-  "772AAstd2"
+AA_list <- c("Ala", "Gly", "Thr", "Ser", "Val", "Leu", "Ile", "NLeu", "Pro", "Asp", "Glu", "Phe", "Tyr", "Lys")
+C_N <- "C"
+fl_nm <- "sherwood_220225_intercal_d13C"
+order_AAs <- "Type" # "Type"
+cyano <- "762cyano"
+fish_muscle <- "763fish1"
+
+
+
+# # ## A separate place where you want your final sample data to be stored:
+file_save <- "C:/Users/EcoGeoChemLab/Documents"
+# 
+# ## Where this file you are using now lives:
+# file_home <- "C:/Users/EcoGeoChemLab/isodat_processing"
+
+## Carbon AA std files for your lab
+file_save_AAstds_C <- "C:/Users/EcoGeoChemLab/Documents/AAStds_C"
+## Carbon Labstd files for your lab
+file_save_stds_C <- "C:/Users/EcoGeoChemLab/Documents/Stds_C"
+
+
+## Nitrogen AA std files for your lab
+file_save_AAstds_N <- "C:/Users/EcoGeoChemLab/Documents/AAStds_N"
+## Nitrogen Labstd files for your lab
+file_save_stds_N <- "C:/Users/EcoGeoChemLab/Documents/Stds_N"
+
+##############################################################################
+##############################################################################
+## Code you shouldn't need to touch:
+
+# file_sorc <- paste0(file_home, "/sorc") ## Where your source files are stored (These you should never have to touch, and should be the same if you are running normal data corrections or std test runs)
+
+#######################
+# source(paste0(file_sorc, "/process_CSIA_full_run.r"))     
+outs <- process_CSIA_full_run()
+
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
