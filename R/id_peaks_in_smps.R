@@ -42,6 +42,21 @@ id_peaks_in_smps <- function(df_all, df_AAstd){
     }
   }
   
+  ### Check for NA value in run time to know that vendor table is wrong
+  for(i in 1:length(smps)){
+    for(j in 1:length(runs)){
+      # i <- 1
+      # j <- 1
+      df <- df_all[df_all$smp == smps[i] & df_all$run == runs[j],]
+      if(nrow(df) == 0) next  ## Some of the indexes are intentionaly empty to make the loop simplar
+      if(any(is.na(df$Rt.s.))){
+        stop(paste0("vendor table corrupt reset isodat chromatogram and correct for sample: ",smps[i],", run: ", runs[j] ))   
+      }
+      
+      rm(df)
+    }
+  }
+  
   
   #################################################
   ## Take the diff of just middle peaks

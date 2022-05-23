@@ -15,7 +15,7 @@
 nitrogen_corrections <- function(df_AAstd_int, df_peaks_internal){
   # df_AAstd_int <- df_AAstd
   # df_peaks_internal <- df_peaks
-  
+
   drops <- c("date", "time", "garb_1", "last_name", "notes")
   df_peaks_internal <- df_peaks_internal[,!names(df_peaks_internal)%in%drops]
   
@@ -40,7 +40,7 @@ nitrogen_corrections <- function(df_AAstd_int, df_peaks_internal){
   Std_df <- merge(Std_df, stdvs, by = c("mix_standard"))
   
 
-  Std_df$correction_factor <- Std_df$Mean - Std_df$Accepted_delta_15_N
+  Std_df$correction_factor <- Std_df$Accepted_delta_15_N - Std_df$Mean 
   
   
   smps<- unique(df_peaks_internal$smp)

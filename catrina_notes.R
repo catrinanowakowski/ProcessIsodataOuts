@@ -16,3 +16,5 @@ usethis::use_data("C:/Users/EcoGeoChemLab/porcess_isodat_outs/ProcessIsodataOuts
 ## Would be good to also have a function that does the AAstds alone 
 
 ## eventualy add a trophic position function ect... 
+
+devtools::build_readme()

@@ -76,5 +76,7 @@ file_save_stds_N <- "C:/Users/EcoGeoChemLab/Documents/Stds_N"
 #######################
 # source(paste0(file_sorc, "/process_CSIA_full_run.r"))     
 outs <- process_CSIA_full_run()
+all_fn_std_df <- outs$all_fn_std_df
+all_fn_df <- outs$all_fn_df
 
 ```
