@@ -113,7 +113,7 @@ id_peaks_in_smps <- function(df_all, df_AAstd){
             df$AAs[k] <- df_AA_diff$AAs[k]
             df$diff[k+1] <- df$diff[k+1] - df_AA_diff$diff[k]
             
-          }else if(df$diff[k] < df_AA_diff$diff[k] + 10 &  df$diff[k] > df_AA_diff$diff[k] - 15){  ## changed from 10 to 15 because coral samples have a 12 gap betwenn gly and thr ## Ten is a bit high for the space between lys and arg, this number could be changed (needs to be big enough for diff from aastd run to samp run, but small enough that it is bigger than the time diff between two aa next to each other in the run )
+          }else if(df$diff[k] < df_AA_diff$diff[k] + 15 &  df$diff[k] > df_AA_diff$diff[k] - 15){  ## changed from 10 to 15 because coral samples have a 12 gap betwenn gly and thr ## Ten is a bit high for the space between lys and arg, this number could be changed (needs to be big enough for diff from aastd run to samp run, but small enough that it is bigger than the time diff between two aa next to each other in the run )
             df$AAs[k] <- df_AA_diff$AAs[k]
           }else{
             df_row <- df[1,]
