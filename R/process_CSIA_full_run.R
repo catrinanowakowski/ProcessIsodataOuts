@@ -1,6 +1,6 @@
 #' @title FUNCTION_TITLE
 #' @description FUNCTION_DESCRIPTION
-
+#' @param drift_corr PARAM_DESCRIPTION
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
 #' @examples 

@@ -4,6 +4,7 @@
 #' @param file_sorc PARAM_DESCRIPTION
 #' @param file_data PARAM_DESCRIPTION
 #' @param AAStd_name PARAM_DESCRIPTION
+#' @param drift_corr PARAM_DESCRIPTION
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
 #' @examples 
