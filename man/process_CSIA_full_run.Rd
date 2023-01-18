@@ -6,6 +6,9 @@
 \usage{
 process_CSIA_full_run(drift_corr)
 }
+\arguments{
+\item{drift_corr}{PARAM_DESCRIPTION}
+}
 \value{
 OUTPUT_DESCRIPTION
 }
