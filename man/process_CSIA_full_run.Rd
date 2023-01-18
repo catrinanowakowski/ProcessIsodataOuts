@@ -4,7 +4,7 @@
 \alias{process_CSIA_full_run}
 \title{FUNCTION_TITLE}
 \usage{
-process_CSIA_full_run()
+process_CSIA_full_run(drift_corr)
 }
 \value{
 OUTPUT_DESCRIPTION

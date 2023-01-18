@@ -11,12 +11,12 @@
 #' }
 #' @rdname process_CSIA_full_run
 #' @export 
-process_CSIA_full_run <- function(){
+process_CSIA_full_run <- function(drift_corr){
 
   ##############################################################################
   ##############################################################################
   # source(paste0(file_sorc, "/read_tag_correct.R"))     
-  outs <- read_tag_correct(C_N = C_N, file_sorc = file_sorc, file_data = file_data, AAStd_name = AAStd_name)
+  outs <- read_tag_correct(C_N = C_N, file_sorc = file_sorc, file_data = file_data, AAStd_name = AAStd_name, drift_corr =drift_corr)
   
   Std_df = outs$Std_df # Summary table of the AA std runs and the data used in correction factors
   fn_df = outs$fn_df # All corrected sample data. Mean of Isodat values, std of isodat values, corrected final value
